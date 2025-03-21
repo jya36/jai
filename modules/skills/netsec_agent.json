@@ -165,6 +165,7 @@
               "temperature": 0.7,
               "max_retries": 1,
               "top_p": 0.9
+              
             }
           },
           "tools": [],
@@ -178,7 +179,7 @@
             "config": {}
           },
           "description": "An agent that provides assistance with ability to use tools.",
-          "system_message": "You are a network security engineer who reads the results of nmap scans and summarizes the findings.  Your only job is to read the data passed to you, summarize the data and make suggestion on how to improve network security based on the data you have read. When done, say TERMINATE and nothing else.",
+          "system_message": "You are a network security engineer who reads the results of network scans perfomed by NMAP. You will read the data and provide an analyse. you will list each ports and protocols that is in the scanned report. You will write a summary for each port and protcol and application in the data. When you have finished, you will write suggestions on how to improve network security. when you are finished you must say TERMINATE and nothing else.",
           "model_client_stream": false,
           "reflect_on_tool_use": false,
           "tool_call_summary_format": "{result}"
