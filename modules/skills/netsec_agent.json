@@ -1,0 +1,200 @@
+{
+  "provider": "autogen_agentchat.teams.RoundRobinGroupChat",
+  "component_type": "team",
+  "version": 1,
+  "component_version": 1,
+  "description": "A Assistant that will scan a network and summerize issues",
+  "label": "Network Scanner",
+  "config": {
+    "participants": [
+      {
+        "provider": "autogen_agentchat.agents.AssistantAgent",
+        "component_type": "agent",
+        "version": 1,
+        "component_version": 1,
+        "description": "Agent that takes a network address or network range and performs a uses a tool that performs an NMAP scan.",
+        "label": "Nmap scan",
+        "config": {
+          "name": "network_scanner",
+          "model_client": {
+            "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+            "component_type": "model",
+            "version": 1,
+            "component_version": 1,
+            "description": "OLLAMA-PHI4",
+            "label": "phi4-mini:3.8b-fp16",
+            "config": {
+              "model": "phi4-mini:3.8b-fp16",
+              "model_info": {
+                "vision": false,
+                "function_calling": true,
+                "json_output": false,
+                "family": "ollama"
+              },
+              "base_url": "http://localhost:11434/v1",
+              "api_key": "222",
+              "temperature": 0.7,
+              "max_retries": 2, 
+              "top_p": 0.9
+              
+            }
+          },
+          "tools": [
+            {
+              "provider": "autogen_core.tools.FunctionTool",
+              "component_type": "tool",
+              "version": 1,
+              "component_version": 1,
+              "description": "Run a NMAP scan on the IP address provided by the agent.",
+              "label": "NMAP_SCANNER",
+              "config": {
+                "source_code": "import subprocess\nimport os\ndef run_nmap(network:str) -> str:\n    current_dir = os.getcwd()\n    fileName = f\"{current_dir}/nmap_scan_{network}.txt\"\n    cmd = [\"nmap\", \"-sV\", \"-p 1-65535\", f\"-oN\", fileName, network]\n    print(cmd)\n    result = subprocess.run(cmd, check=True, capture_output=True, text=True)\n    return(fileName)\n\n    ",
+                "name": "run_nmap",
+                "description": "Description of the new function",
+                "global_imports": [],
+                "has_cancellation_support": false
+              }
+            }
+          ],
+          "model_context": {
+            "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+            "component_type": "chat_completion_context",
+            "version": 1,
+            "component_version": 1,
+            "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+            "label": "UnboundedChatCompletionContext",
+            "config": {}
+          },
+          "description": "An agent that provides assistance with ability to use tools.",
+          "system_message": "You are a network scanning agent with a tool that can do the scan. A user will provide you with either a network address or a network range to perform the scan. If not network address or network range is detected, you will tell the user to provide an network address. If a network address or network range is provided, you will perform the scan using the tool. The tool will return the file name that contains the scan results. This file name will be passed to the reader tool. You need to wait for the tool to complete before passing to the network_reader agent. you will only scan the network that was provided to you and not scan other networks. When done, say TERMINATE and nothing else.",
+          "model_client_stream": false,
+          "reflect_on_tool_use": false,
+          "tool_call_summary_format": "{result}"
+        }
+      },
+      {
+        "provider": "autogen_agentchat.agents.AssistantAgent",
+        "component_type": "agent",
+        "version": 1,
+        "component_version": 1,
+        "description": "read nmap results and summerize findings",
+        "label": "Read NMAP Results Agent",
+        "config": {
+          "name": "network_reader",
+          "model_client": {
+            "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+            "component_type": "model",
+            "version": 1,
+            "component_version": 1,
+            "description": "OLLAMA-PHI4",
+            "label": "phi4-mini:3.8b-fp16",
+            "config": {
+              "model": "phi4-mini:3.8b-fp16",
+              "model_info": {
+                "vision": false,
+                "function_calling": true,
+                "json_output": false,
+                "family": "ollama"
+              },
+              "base_url": "http://localhost:11434/v1",
+              "api_key": "222",
+              "temperature": 0.7,
+              "max_retries": 1,
+              "top_p": 0.9
+            }
+          },
+          "tools": [
+            {
+              "provider": "autogen_core.tools.FunctionTool",
+              "component_type": "tool",
+              "version": 1,
+              "component_version": 1,
+              "description": "Read the results of the nmap scan and use LLM to summarize the findings.",
+              "label": "Read results and summerize",
+              "config": {
+                "source_code": "def read_results(filename:str) -> str:\n    try:\n        with open(filename, \"r\") as file:\n            file_contents = file.read()\n        return file_contents\n    except:\n        return \"Unable to open file\"",
+                "name": "read_results",
+                "description": "Description of the new function",
+                "global_imports": [],
+                "has_cancellation_support": false
+              }
+            }
+          ],
+          "model_context": {
+            "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+            "component_type": "chat_completion_context",
+            "version": 1,
+            "component_version": 1,
+            "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+            "label": "UnboundedChatCompletionContext",
+            "config": {}
+          },
+          "description": "An agent that provides assistance with ability to use tools.",
+          "system_message": "Your job is to read the results of nmap scans using the tools available to you to open the file name passed to you. When you have file contents, pass the data to the network summary agent When done, say TERMINATE and nothing else.",
+          "model_client_stream": false,
+          "reflect_on_tool_use": false,
+          "tool_call_summary_format": "{result}"
+        }
+      },
+      {
+        "provider": "autogen_agentchat.agents.AssistantAgent",
+        "component_type": "agent",
+        "version": 1,
+        "component_version": 1,
+        "description": "An agent that provides assistance with ability to use tools.",
+        "label": "network_summary",
+        "config": {
+          "name": "network_summary",
+          "model_client": {
+            "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+            "component_type": "model",
+            "version": 1,
+            "component_version": 1,
+            "description": "OLLAMA-PHI4",
+            "label": "phi4-mini:3.8b-fp16",
+            "config": {
+              "model": "phi4-mini:3.8b-fp16",
+              "model_info": {
+                "vision": false,
+                "function_calling": true,
+                "json_output": false,
+                "family": "ollama"
+              },
+              "base_url": "http://localhost:11434/v1",
+              "api_key": "222",
+              "temperature": 0.7,
+              "max_retries": 1,
+              "top_p": 0.9
+            }
+          },
+          "tools": [],
+          "model_context": {
+            "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+            "component_type": "chat_completion_context",
+            "version": 1,
+            "component_version": 1,
+            "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+            "label": "UnboundedChatCompletionContext",
+            "config": {}
+          },
+          "description": "An agent that provides assistance with ability to use tools.",
+          "system_message": "You are a network security engineer who reads the results of nmap scans and summarizes the findings.  Your only job is to read the data passed to you, summarize the data and make suggestion on how to improve network security based on the data you have read. When done, say TERMINATE and nothing else.",
+          "model_client_stream": false,
+          "reflect_on_tool_use": false,
+          "tool_call_summary_format": "{result}"
+        }
+      }
+    ],
+    "termination_condition": {
+      "provider": "autogen_agentchat.conditions.TextMentionTermination",
+      "component_type": "termination",
+      "version": 1,
+      "component_version": 1,
+      "description": "Terminate the conversation if a specific text is mentioned.",
+      "label": "TextMentionTermination",
+      "config": {
+        "text": "TERMINATE"
+      }
+    }
+  }
+}
