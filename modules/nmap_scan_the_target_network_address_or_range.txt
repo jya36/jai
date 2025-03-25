@@ -1,0 +1,4 @@
+# Nmap 7.80 scan initiated Mon Mar 24 19:27:46 2025 as: nmap -sV "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_the_target_network_address_or_range.txt the_target_network_address_or_range
+Failed to resolve "the_target_network_address_or_range".
+WARNING: No targets were specified, so 0 hosts scanned.
+# Nmap done at Mon Mar 24 19:27:56 2025 -- 0 IP addresses (0 hosts up) scanned in 10.16 seconds

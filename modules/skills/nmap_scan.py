@@ -6,7 +6,7 @@ def run_nmap(network:str) -> str:
     cmd = ["nmap", "-sV", "-p 1-65535", f"-oN", fileName, network]
     print(cmd)
     result = subprocess.run(cmd, check=True, capture_output=True, text=True)
-    return(fileName)
+    return(result)
 
 if __name__ == "__main__":
     run_nmap("192.168.1.99")

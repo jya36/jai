@@ -1,4 +1,0 @@
-# Nmap 7.80 scan initiated Fri Mar 21 16:38:32 2025 as: nmap -sV "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_JAY-LINUX2.txt JAY-LINUX2
-Failed to resolve "JAY-LINUX2".
-WARNING: No targets were specified, so 0 hosts scanned.
-# Nmap done at Fri Mar 21 16:38:42 2025 -- 0 IP addresses (0 hosts up) scanned in 10.15 seconds

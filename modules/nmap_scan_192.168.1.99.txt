@@ -1,6 +1,6 @@
-# Nmap 7.80 scan initiated Fri Mar 21 16:41:56 2025 as: nmap -sV "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.99.txt 192.168.1.99
+# Nmap 7.80 scan initiated Mon Mar 24 19:26:52 2025 as: nmap -sV "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.99.txt 192.168.1.99
 Nmap scan report for 192.168.1.99
-Host is up (0.0033s latency).
+Host is up (0.00054s latency).
 Not shown: 65531 closed ports
 PORT      STATE SERVICE     VERSION
 22/tcp    open  ssh         OpenSSH 9.6p1 Ubuntu 3ubuntu13.8 (Ubuntu Linux; protocol 2.0)
@@ -8,39 +8,39 @@ PORT      STATE SERVICE     VERSION
 445/tcp   open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
 32400/tcp open  ssl/plex?
 1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port32400-TCP:V=7.80%T=SSL%I=7%D=3/21%Time=67DDF957%P=x86_64-pc-linux-g
+SF-Port32400-TCP:V=7.80%T=SSL%I=7%D=3/24%Time=67E21481%P=x86_64-pc-linux-g
 SF:nu%r(GenericLines,109,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nX-Plex-Pro
 SF:tocol:\x201\.0\r\nContent-Length:\x2089\r\nContent-Type:\x20text/html\r
-SF:\nConnection:\x20close\r\nCache-Control:\x20no-cache\r\nDate:\x20Fri,\x
-SF:2021\x20Mar\x202025\x2023:42:15\x20GMT\r\n\r\n<html><head><title>Bad\x2
+SF:\nConnection:\x20close\r\nCache-Control:\x20no-cache\r\nDate:\x20Tue,\x
+SF:2025\x20Mar\x202025\x2002:27:13\x20GMT\r\n\r\n<html><head><title>Bad\x2
 SF:0Request</title></head><body><h1>400\x20Bad\x20Request</h1></body></htm
 SF:l>")%r(GetRequest,173,"HTTP/1\.1\x20401\x20Unauthorized\r\nX-Plex-Proto
 SF:col:\x201\.0\r\nContent-Length:\x20193\r\nContent-Type:\x20text/html\r\
-SF:nConnection:\x20close\r\nCache-Control:\x20no-cache\r\nDate:\x20Fri,\x2
-SF:021\x20Mar\x202025\x2023:42:15\x20GMT\r\n\r\n<html><head><script>window
+SF:nConnection:\x20close\r\nCache-Control:\x20no-cache\r\nDate:\x20Tue,\x2
+SF:025\x20Mar\x202025\x2002:27:13\x20GMT\r\n\r\n<html><head><script>window
 SF:\.location\x20=\x20window\.location\.href\.match\(/\(\^\.\+\\/\)\[\^\\/
 SF:\]\*\$/\)\[1\]\x20\+\x20'web/index\.html';</script><title>Unauthorized<
 SF:/title></head><body><h1>401\x20Unauthorized</h1></body></html>")%r(HTTP
 SF:Options,173,"HTTP/1\.1\x20401\x20Unauthorized\r\nX-Plex-Protocol:\x201\
 SF:.0\r\nContent-Length:\x20193\r\nContent-Type:\x20text/html\r\nConnectio
-SF:n:\x20close\r\nCache-Control:\x20no-cache\r\nDate:\x20Fri,\x2021\x20Mar
-SF:\x202025\x2023:42:15\x20GMT\r\n\r\n<html><head><script>window\.location
+SF:n:\x20close\r\nCache-Control:\x20no-cache\r\nDate:\x20Tue,\x2025\x20Mar
+SF:\x202025\x2002:27:14\x20GMT\r\n\r\n<html><head><script>window\.location
 SF:\x20=\x20window\.location\.href\.match\(/\(\^\.\+\\/\)\[\^\\/\]\*\$/\)\
 SF:[1\]\x20\+\x20'web/index\.html';</script><title>Unauthorized</title></h
 SF:ead><body><h1>401\x20Unauthorized</h1></body></html>")%r(RTSPRequest,17
 SF:3,"HTTP/1\.1\x20401\x20Unauthorized\r\nX-Plex-Protocol:\x201\.0\r\nCont
 SF:ent-Length:\x20193\r\nContent-Type:\x20text/html\r\nConnection:\x20clos
-SF:e\r\nCache-Control:\x20no-cache\r\nDate:\x20Fri,\x2021\x20Mar\x202025\x
-SF:2023:42:15\x20GMT\r\n\r\n<html><head><script>window\.location\x20=\x20w
+SF:e\r\nCache-Control:\x20no-cache\r\nDate:\x20Tue,\x2025\x20Mar\x202025\x
+SF:2002:27:14\x20GMT\r\n\r\n<html><head><script>window\.location\x20=\x20w
 SF:indow\.location\.href\.match\(/\(\^\.\+\\/\)\[\^\\/\]\*\$/\)\[1\]\x20\+
 SF:\x20'web/index\.html';</script><title>Unauthorized</title></head><body>
 SF:<h1>401\x20Unauthorized</h1></body></html>")%r(RPCCheck,109,"HTTP/1\.1\
 SF:x20400\x20Bad\x20Request\r\nX-Plex-Protocol:\x201\.0\r\nContent-Length:
 SF:\x2089\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\nCache-C
-SF:ontrol:\x20no-cache\r\nDate:\x20Fri,\x2021\x20Mar\x202025\x2023:42:15\x
+SF:ontrol:\x20no-cache\r\nDate:\x20Tue,\x2025\x20Mar\x202025\x2002:27:14\x
 SF:20GMT\r\n\r\n<html><head><title>Bad\x20Request</title></head><body><h1>
 SF:400\x20Bad\x20Request</h1></body></html>");
 Service Info: Host: JAY-LINUX2; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Fri Mar 21 16:42:16 2025 -- 1 IP address (1 host up) scanned in 20.15 seconds
+# Nmap done at Mon Mar 24 19:27:15 2025 -- 1 IP address (1 host up) scanned in 23.07 seconds
