@@ -1,0 +1,34 @@
+# Nmap 7.80 scan initiated Fri Mar 28 16:25:26 2025 as: nmap "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.12.txt 192.168.1.12
+Nmap scan report for 192.168.1.12
+Host is up (0.0015s latency).
+Not shown: 65508 closed ports
+PORT      STATE SERVICE
+21/tcp    open  ftp
+22/tcp    open  ssh
+80/tcp    open  http
+111/tcp   open  rpcbind
+139/tcp   open  netbios-ssn
+161/tcp   open  snmp
+443/tcp   open  https
+445/tcp   open  microsoft-ds
+662/tcp   open  pftp
+892/tcp   open  unknown
+2049/tcp  open  nfs
+3261/tcp  open  winshadow
+3263/tcp  open  ecolor-imager
+3264/tcp  open  ccmail
+3265/tcp  open  altav-tunnel
+4045/tcp  open  lockd
+5000/tcp  open  upnp
+5001/tcp  open  commplex-link
+5357/tcp  open  wsdapi
+5566/tcp  open  westec-connect
+6011/tcp  open  x11
+6012/tcp  open  x11
+6013/tcp  open  x11
+6014/tcp  open  x11
+49170/tcp open  unknown
+50001/tcp open  unknown
+50002/tcp open  iiimsf
+
+# Nmap done at Fri Mar 28 16:25:30 2025 -- 1 IP address (1 host up) scanned in 3.46 seconds

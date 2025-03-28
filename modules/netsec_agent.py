@@ -2,7 +2,7 @@ import asyncio
 import json
 import os
 from autogen_agentchat.agents import AssistantAgent
-from autogen_agentchat.conditions import TextMentionTermination
+from autogen_agentchat.conditions import TextMentionTermination,TokenUsageTermination
 from autogen_agentchat.teams import BaseGroupChat, RoundRobinGroupChat
 from autogen_ext.models.ollama import OllamaChatCompletionClient
 from autogen_core import CancellationToken
@@ -15,7 +15,7 @@ class Chatbot:
             "name": "phi4-mini:3.8b-fp16",
             "context_length": 8192,
             "max_tokens": 4096,
-            "temperature": 0.7,
+            "temperature": 0,
             "function_calling": True,
             "vision": False,
             "json_output": False,
@@ -85,8 +85,9 @@ class Chatbot:
             model_client_stream=False)
 
         text_termination = TextMentionTermination("TERMINATE")
+        token_termination = TokenUsageTermination(500)
 
-        team = RoundRobinGroupChat([nmap_agent, results_agent], termination_condition=text_termination)
+        team = RoundRobinGroupChat([nmap_agent, results_agent], termination_condition=token_termination)
 
         print("\nProcessing your request...")
         stream = team.run_stream(task=user_input,cancellation_token=CancellationToken())
@@ -107,7 +108,6 @@ class Chatbot:
             if user_input.lower() in ['exit', 'quit']:
                 print("Goodbye!")
                 break
-
             try:
                 await self.netsec_agent(user_input)
             except Exception as e:
