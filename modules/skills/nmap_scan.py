@@ -8,9 +8,6 @@ def run_nmap(network:str) -> str:
     result = subprocess.run(cmd, check=True, capture_output=True, text=True)
     return(result.stdout)
 
-if __name__ == "__main__":
-    run_nmap("192.168.1.99")
-
 
 def read_results(filename:str) -> str:
     try:

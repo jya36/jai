@@ -1,7 +1,7 @@
-# Nmap 7.80 scan initiated Fri Mar 28 16:25:26 2025 as: nmap "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.12.txt 192.168.1.12
+# Nmap 7.80 scan initiated Sat May 31 16:20:13 2025 as: nmap "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.12.txt 192.168.1.12
 Nmap scan report for 192.168.1.12
-Host is up (0.0015s latency).
-Not shown: 65508 closed ports
+Host is up (0.0011s latency).
+Not shown: 65507 closed ports
 PORT      STATE SERVICE
 21/tcp    open  ftp
 22/tcp    open  ssh
@@ -27,8 +27,9 @@ PORT      STATE SERVICE
 6012/tcp  open  x11
 6013/tcp  open  x11
 6014/tcp  open  x11
+6015/tcp  open  x11
 49170/tcp open  unknown
 50001/tcp open  unknown
 50002/tcp open  iiimsf
 
-# Nmap done at Fri Mar 28 16:25:30 2025 -- 1 IP address (1 host up) scanned in 3.46 seconds
+# Nmap done at Sat May 31 16:20:15 2025 -- 1 IP address (1 host up) scanned in 2.23 seconds

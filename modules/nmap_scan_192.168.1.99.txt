@@ -1,11 +1,12 @@
-# Nmap 7.80 scan initiated Fri Mar 28 16:27:11 2025 as: nmap "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.99.txt 192.168.1.99
+# Nmap 7.80 scan initiated Sat May 31 16:21:08 2025 as: nmap "-p 1-65535" -oN /home/jay/Code/jai/modules/nmap_scan_192.168.1.99.txt 192.168.1.99
 Nmap scan report for 192.168.1.99
-Host is up (0.00089s latency).
-Not shown: 65531 closed ports
+Host is up (0.0025s latency).
+Not shown: 65530 closed ports
 PORT      STATE SERVICE
 22/tcp    open  ssh
 139/tcp   open  netbios-ssn
 445/tcp   open  microsoft-ds
+9100/tcp  open  jetdirect
 32400/tcp open  plex
 
-# Nmap done at Fri Mar 28 16:27:13 2025 -- 1 IP address (1 host up) scanned in 2.35 seconds
+# Nmap done at Sat May 31 16:21:11 2025 -- 1 IP address (1 host up) scanned in 2.38 seconds
